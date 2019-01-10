@@ -1,6 +1,6 @@
 using System;
 
-namespace Blog.Models
+namespace Aiursoft.Blog.Models
 {
     public class ErrorViewModel
     {
