@@ -6,10 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Aiursoft.Blog.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class BlogDbContext : IdentityDbContext<BlogUser>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
+        public BlogDbContext(DbContextOptions<BlogDbContext> options) : base(options)
         {
         }
     }
