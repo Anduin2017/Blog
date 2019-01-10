@@ -5,7 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Aiursoft.Pylon" Version="0.9.8" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.5"/>
   </ItemGroup>
 
 </Project>
