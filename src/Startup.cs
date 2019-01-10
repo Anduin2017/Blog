@@ -58,6 +58,7 @@ namespace Aiursoft.Blog
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -65,11 +66,15 @@ namespace Aiursoft.Blog
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseEnforceHttps();
+                app.UseExceptionHandler("/Error/ServerException");
+                app.UseStatusCodePagesWithReExecute("/Error/Code{0}");
             }
-            app.UseStaticFiles();
+            app.UseAiursoftSupportedCultures();
             app.UseAiursoftAuthenticationFromConfiguration(Configuration, "Blog");
+            app.UseStaticFiles();
             app.UseAuthentication();
+            app.UseLanguageSwitcher();
             app.UseMvcWithDefaultRoute();
         }
     }

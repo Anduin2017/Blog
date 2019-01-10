@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Aiursoft.Blog.Data;
+using Aiursoft.Pylon;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -14,13 +16,19 @@ namespace Aiursoft.Blog
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            BuildWebHost(args)
+                .MigrateDbContext<BlogDbContext>()
+                .Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
+        public static IWebHost BuildWebHost(string[] args)
         {
-            return WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+            var host = WebHost.CreateDefaultBuilder(args)
+                 .UseApplicationInsights()
+                 .UseStartup<Startup>()
+                 .Build();
+
+            return host;
         }
     }
 }
