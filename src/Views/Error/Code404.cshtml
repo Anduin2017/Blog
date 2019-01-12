@@ -1,38 +1,23 @@
 ﻿@{
-    ViewData["Title"] = "404 Notfound";
-    Layout = null;
+    ViewData["Title"] = "404 Not found";
 }
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@ViewData["Title"] - @Values.ProjectName</title>
-    <link rel="icon" type="image/x-icon" href="@ServiceLocation.CDN/favicon.ico">
-    <link href="@ServiceLocation.CDN/dist/AiurCore.min.css" rel="stylesheet">
-    <link href="@ServiceLocation.CDN/dist/AiurDashboard.min.css" rel="stylesheet">
-</head>
-<body class="bg-dark lines">
-    <div class="container">
-        <div class="card card-register mx-auto mt-5">
-            <div class="card-header">@ViewData["Title"]</div>
-            <div class="card-body">
-                <h1 class="text-danger">404 - Not found</h1>
-                <h3>The target url you view is not found.</h3>
-                <p>The target URL you viewed is not found..</p>
+
+<div class="container-fluid container-fill-height">
+    <div class="container-content-middle">
+        <form role="form" class="mx-auto text-center app-login-form">
+
+            <h1 class="text-danger">404 - Not found</h1>
+            <h3>The target url you view is not found.</h3>
+            <p>Sorry about it. The target URL you viewed is not found..</p>
+
+            <div class="mb-5">
+                <a class="btn btn-primary" asp-controller="Auth" asp-action="GoAuth">Log In</a>
+                <a class="btn btn-secondary" asp-controller="Auth" asp-action="GoRegister">Sign up</a>
             </div>
-            <a class="card-footer clearfix small z-1" href="@ServiceLocation.WWW">
-                <span class="float-left">Back to Home</span>
-                <span class="float-right">
-                    <i class="fa fa-angle-right"></i>
-                </span>
-            </a>
-        </div>
+
+            <footer class="screen-login">
+                <a asp-controller="Home" asp-action="Index" class="text-muted">Back to home</a>
+            </footer>
+        </form>
     </div>
-    <script src="@ServiceLocation.CDN/dist/AiurCore.min.js"></script>
-    <script src="@ServiceLocation.CDN/dist/AiurDashboard.min.js"></script>
-</body>
-</html>
-
-
+</div>
