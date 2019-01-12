@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Aiursoft.Pylon.Services;
 using Aiursoft.Pylon;
 using Aiursoft.Pylon.Models;
+using Aiursoft.Pylon.Attributes;
 
 namespace Aiursoft.Blog.Controllers
 {
@@ -28,6 +29,8 @@ namespace Aiursoft.Blog.Controllers
             _logger = loggerFactory.CreateLogger<HomeController>();
             _serviceLocation = serviceLocation;
         }
+
+        [AiurForceAuth("", "", true)]
         public IActionResult Index()
         {
             return View();

@@ -10,6 +10,7 @@ using Aiursoft.Pylon.Models;
 using Aiursoft.Pylon.Models.ForApps.AddressModels;
 using Aiursoft.Pylon;
 using Aiursoft.Pylon.Models.Developer;
+using System.Linq;
 
 namespace Aiursoft.Blog.Controllers
 {
@@ -17,13 +18,16 @@ namespace Aiursoft.Blog.Controllers
     {
         private readonly AuthService<BlogUser> _authService;
         private readonly UserManager<BlogUser> _userManager;
+        private readonly BlogDbContext _dbContext;
 
         public AuthController(
             AuthService<BlogUser> authService,
-            UserManager<BlogUser> userManager)
+            UserManager<BlogUser> userManager,
+            BlogDbContext dbContext)
         {
             _authService = authService;
             _userManager = userManager;
+            _dbContext = dbContext;
         }
 
         [AiurForceAuth(preferController: "", preferAction: "", justTry: false, register: false)]
@@ -42,6 +46,12 @@ namespace Aiursoft.Blog.Controllers
         {
             var user = await _authService.AuthApp(model);
             this.SetClientLang(user.PreferedLanguage);
+            if (!_dbContext.Users.Any(t => t.IsWebSiteOwner))
+            {
+                user.IsWebSiteOwner = true;
+                _dbContext.Users.Update(user);
+                await _dbContext.SaveChangesAsync();
+            }
             return Redirect(model.state);
         }
     }

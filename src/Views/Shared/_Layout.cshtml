@@ -69,6 +69,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="@ServiceLocation.Account">Settings</a>
                     </li>
+                    @if ((await UserManager.GetUserAsync(User)).IsWebSiteOwner)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="@ServiceLocation.Account">Site Settings</a>
+                        </li>
+                    }
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="modal" data-target="#exampleModal">Logout</a>
                     </li>
