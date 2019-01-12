@@ -19,7 +19,7 @@
     <div class="growl" id="app-growl"></div>
     <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-primary app-navbar">
         <a class="navbar-brand" href="index.html">
-            <img src="/img/brand-white.png" alt="brand">
+            <img src="~/img/brand-white.png" alt="brand">
         </a>
         <button class="navbar-toggler navbar-toggler-right d-md-none"
                 type="button"
@@ -34,341 +34,49 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="profile/index.html">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="modal" href="#msgModal">Messages</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="docs/index.html">Docs</a>
-                </li>
-
-                <li class="nav-item d-md-none">
-                    <a class="nav-link" href="notifications/index.html">Notifications</a>
-                </li>
-                <li class="nav-item d-md-none">
-                    <a class="nav-link" data-action="growl">Growl</a>
-                </li>
-                <li class="nav-item d-md-none">
-                    <a class="nav-link" href="login/index.html">Logout</a>
-                </li>
-
             </ul>
-
             <form class="form-inline float-right d-none d-md-flex">
                 <input class="form-control" type="text" data-action="grow" placeholder="Search">
             </form>
+            @if (!SignInManager.IsSignedIn(User))
+            {
+                <ul class="nav navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Auth" asp-action="GoAuth">@Localizer["Sign in"]</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Auth" asp-action="GoRegister">@Localizer["Sign up"]</a>
+                    </li>
+                </ul>
+            }
+            else
+            {
+                <ul id="#js-popoverContent" class="nav navbar-nav float-right mr-1 d-none d-md-flex">
+                    <li class="nav-item">
+                        <a class="app-notifications nav-link" href="notifications/index.html">
+                            <span class="icon icon-bell"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item ml-2">
+                        <button class="btn btn-default navbar-btn navbar-btn-avatar" data-toggle="popover">
+                            @await UserImageGenerator.RenderUserImageAsync(User.Identity.Name, @class: "rounded-circle")
+                        </button>
+                    </li>
+                </ul>
 
-            <ul class="navbar-nav">
-                @if (SignInManager.IsSignedIn(User))
-                {
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            @await UserImageGenerator.RenderUserImageAsync(User.Identity.Name)
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown02">
-                            <a class="dropdown-item" href="@ServiceLocation.Account">@Localizer["Settings"]</a>
-                            <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal">@Localizer["Sign out"]</a>
-                        </div>
+                <ul class="nav navbar-nav d-none" id="js-popoverContent">
+                    <li class="nav-item">
+                        <a class="nav-link" href="@ServiceLocation.Account">Settings</a>
                     </li>
-                }
-                else
-                {
-                    <li class="nav-item active">
-                        <a class="nav-link" asp-controller="Auth" asp-action="GoAuth">
-                            @Localizer["Sign in"]
-                        </a>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="modal" data-target="#exampleModal">Logout</a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" asp-controller="Auth" asp-action="GoRegister">
-                            @Localizer["Sign up"]
-                        </a>
-                    </li>
-                }
-            </ul>
+                </ul>
+            }
         </div>
     </nav>
-
-    <div class="modal fade" id="msgModal" tabindex="-1" role="dialog" aria-labelledby="msgModal" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Messages</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-
-                <div class="modal-body p-0 js-modalBody">
-                    <div class="modal-body-scroller">
-                        <div class="media-list media-list-users list-group js-msgGroup">
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="media">
-                                    <img class="rounded-circle media-object d-flex align-self-start mr-3" src="/img/avatar-fat.jpg">
-                                    <div class="media-body">
-                                        <strong>Jacob Thornton</strong> and <strong>1 other</strong>
-                                        <div class="media-body-secondary">
-                                            Aenean eu leo quam. Pellentesque ornare sem lacinia quam &hellip;
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="media">
-                                    <img class="rounded-circle media-object d-flex align-self-start mr-3" src="/img/avatar-mdo.png">
-                                    <div class="media-body">
-                                        <strong>Mark Otto</strong> and <strong>3 others</strong>
-                                        <div class="media-body-secondary">
-                                            Brunch sustainable placeat vegan bicycle rights yeah…
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="media">
-                                    <img class="rounded-circle media-object d-flex align-self-start mr-3" src="/img/avatar-dhg.png">
-                                    <div class="media-body">
-                                        <strong>Dave Gamache</strong>
-                                        <div class="media-body-secondary">
-                                            Brunch sustainable placeat vegan bicycle rights yeah…
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="media">
-                                    <img class="rounded-circle media-object d-flex align-self-start mr-3" src="/img/avatar-fat.jpg">
-                                    <div class="media-body">
-                                        <strong>Jacob Thornton</strong> and <strong>1 other</strong>
-                                        <div class="media-body-secondary">
-                                            Aenean eu leo quam. Pellentesque ornare sem lacinia quam &hellip;
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="media">
-                                    <img class="rounded-circle media-object d-flex align-self-start mr-3" src="/img/avatar-mdo.png">
-                                    <div class="media-body">
-                                        <strong>Mark Otto</strong> and <strong>3 others</strong>
-                                        <div class="media-body-secondary">
-                                            Brunch sustainable placeat vegan bicycle rights yeah…
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="media">
-                                    <img class="rounded-circle media-object d-flex align-self-start mr-3" src="/img/avatar-dhg.png">
-                                    <div class="media-body">
-                                        <strong>Dave Gamache</strong>
-                                        <div class="media-body-secondary">
-                                            Brunch sustainable placeat vegan bicycle rights yeah…
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="media">
-                                    <img class="rounded-circle media-object d-flex align-self-start mr-3" src="/img/avatar-fat.jpg">
-                                    <div class="media-body">
-                                        <strong>Jacob Thornton</strong> and <strong>1 other</strong>
-                                        <div class="media-body-secondary">
-                                            Aenean eu leo quam. Pellentesque ornare sem lacinia quam &hellip;
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="media">
-                                    <img class="rounded-circle media-object d-flex align-self-start mr-3" src="/img/avatar-mdo.png">
-                                    <div class="media-body">
-                                        <strong>Mark Otto</strong> and <strong>3 others</strong>
-                                        <div class="media-body-secondary">
-                                            Brunch sustainable placeat vegan bicycle rights yeah…
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="media">
-                                    <img class="rounded-circle media-object d-flex align-self-start mr-3" src="/img/avatar-dhg.png">
-                                    <div class="media-body">
-                                        <strong>Dave Gamache</strong>
-                                        <div class="media-body-secondary">
-                                            Brunch sustainable placeat vegan bicycle rights yeah…
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="d-none m-3 js-conversation">
-                            <ul class="media-list media-list-conversation">
-                                <li class="media media-current-user mb-4">
-                                    <div class="media-body">
-                                        <div class="media-body-text">
-                                            Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus varius blandit sit amet non magna. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Sed posuere consectetur est at lobortis.
-                                        </div>
-                                        <div class="media-footer">
-                                            <small class="text-muted">
-                                                <a href="#">Dave Gamache</a> at 4:20PM
-                                            </small>
-                                        </div>
-                                    </div>
-                                    <img class="rounded-circle media-object d-flex align-self-start ml-3" src="/img/avatar-dhg.png">
-                                </li>
-
-                                <li class="media mb-4">
-                                    <img class="rounded-circle media-object d-flex align-self-start mr-3" src="/img/avatar-fat.jpg">
-                                    <div class="media-body">
-                                        <div class="media-body-text">
-                                            Cras justo odio, dapibus ac facilisis in, egestas eget quam. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-                                        </div>
-                                        <div class="media-body-text">
-                                            Vestibulum id ligula porta felis euismod semper. Aenean lacinia bibendum nulla sed consectetur. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam quis risus eget urna mollis ornare vel eu leo. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                                        </div>
-                                        <div class="media-body-text">
-                                            Cras mattis consectetur purus sit amet fermentum. Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus.
-                                        </div>
-                                        <div class="media-footer">
-                                            <small class="text-muted">
-                                                <a href="#">Fat</a> at 4:28PM
-                                            </small>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li class="media mb-4">
-                                    <img class="rounded-circle media-object d-flex align-self-start mr-3" src="/img/avatar-mdo.png">
-                                    <div class="media-body">
-                                        <div class="media-body-text">
-                                            Etiam porta sem malesuada magna mollis euismod. Donec id elit non mi porta gravida at eget metus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Etiam porta sem malesuada magna mollis euismod. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Aenean lacinia bibendum nulla sed consectetur.
-                                        </div>
-                                        <div class="media-body-text">
-                                            Curabitur blandit tempus porttitor. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-                                        </div>
-                                        <div class="media-footer">
-                                            <small class="text-muted">
-                                                <a href="#">Mark Otto</a> at 4:20PM
-                                            </small>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li class="media media-current-user mb-4">
-                                    <div class="media-body">
-                                        <div class="media-body-text">
-                                            Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus varius blandit sit amet non magna. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Sed posuere consectetur est at lobortis.
-                                        </div>
-                                        <div class="media-footer">
-                                            <small class="text-muted">
-                                                <a href="#">Dave Gamache</a> at 4:20PM
-                                            </small>
-                                        </div>
-                                    </div>
-                                    <img class="rounded-circle media-object d-flex align-self-start ml-3" src="/img/avatar-dhg.png">
-                                </li>
-
-                                <li class="media mb-4">
-                                    <img class="rounded-circle media-object d-flex align-self-start mr-3" src="/img/avatar-fat.jpg">
-                                    <div class="media-body">
-                                        <div class="media-body-text">
-                                            Cras justo odio, dapibus ac facilisis in, egestas eget quam. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-                                        </div>
-                                        <div class="media-body-text">
-                                            Vestibulum id ligula porta felis euismod semper. Aenean lacinia bibendum nulla sed consectetur. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam quis risus eget urna mollis ornare vel eu leo. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                                        </div>
-                                        <div class="media-body-text">
-                                            Cras mattis consectetur purus sit amet fermentum. Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus.
-                                        </div>
-                                        <div class="media-footer">
-                                            <small class="text-muted">
-                                                <a href="#">Fat</a> at 4:28PM
-                                            </small>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li class="media mb-4">
-                                    <img class="rounded-circle media-object d-flex align-self-start mr-3" src="/img/avatar-mdo.png">
-                                    <div class="media-body">
-                                        <div class="media-body-text">
-                                            Etiam porta sem malesuada magna mollis euismod. Donec id elit non mi porta gravida at eget metus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Etiam porta sem malesuada magna mollis euismod. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Aenean lacinia bibendum nulla sed consectetur.
-                                        </div>
-                                        <div class="media-body-text">
-                                            Curabitur blandit tempus porttitor. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-                                        </div>
-                                        <div class="media-footer">
-                                            <small class="text-muted">
-                                                <a href="#">Mark Otto</a> at 4:20PM
-                                            </small>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModal" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Users</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-
-                <div class="modal-body p-0">
-                    <div class="modal-body-scroller">
-                        <ul class="media-list media-list-users list-group">
-                            <li class="list-group-item">
-                                <div class="media w-100">
-                                    <img class="media-object d-flex align-self-start mr-3" src="/img/avatar-fat.jpg">
-                                    <div class="media-body">
-                                        <button class="btn btn-secondary btn-sm float-right">
-                                            <span class="glyphicon glyphicon-user"></span> Follow
-                                        </button>
-                                        <strong>Jacob Thornton</strong>
-                                        <p>@@fat - San Francisco</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="media w-100">
-                                    <img class="media-object d-flex align-self-start mr-3" src="/img/avatar-dhg.png">
-                                    <div class="media-body">
-                                        <button class="btn btn-secondary btn-sm float-right">
-                                            <span class="glyphicon glyphicon-user"></span> Follow
-                                        </button>
-                                        <strong>Dave Gamache</strong>
-                                        <p>@@dhg - Palo Alto</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="media w-100">
-                                    <img class="media-object d-flex align-self-start mr-3" src="/img/avatar-mdo.png">
-                                    <div class="media-body">
-                                        <button class="btn btn-secondary btn-sm float-right">
-                                            <span class="glyphicon glyphicon-user"></span> Follow
-                                        </button>
-                                        <strong>Mark Otto</strong>
-                                        <p>@@mdo - San Francisco</p>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     @RenderBody()
 
     <script src="/js/jquery.min.js"></script>
@@ -376,10 +84,6 @@
     <script src="/js/chart.js"></script>
     <script src="/js/toolkit.js"></script>
     <script src="/js/application.js"></script>
-    <script>
-        // execute/clear BS loaders for docs
-        $(function () { while (window.BS && window.BS.loader && window.BS.loader.length) { (window.BS.loader.pop())() } })
-    </script>
     @this.UseAiurLogoutter()
     @RenderSection("js", required: false)
 </body>

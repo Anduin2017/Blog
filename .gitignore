@@ -3,8 +3,6 @@ lib
 *.lock.json
 package-lock.json
 *.user
-*.min.css
-*.min.js
 bin
 obj
 node_modules
