@@ -18,15 +18,18 @@ namespace Aiursoft.Blog.Controllers
     {
         private readonly AuthService<BlogUser> _authService;
         private readonly UserManager<BlogUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly BlogDbContext _dbContext;
 
         public AuthController(
             AuthService<BlogUser> authService,
             UserManager<BlogUser> userManager,
+            RoleManager<IdentityRole> roleManager,
             BlogDbContext dbContext)
         {
             _authService = authService;
             _userManager = userManager;
+            _roleManager = roleManager;
             _dbContext = dbContext;
         }
 
@@ -46,13 +49,27 @@ namespace Aiursoft.Blog.Controllers
         {
             var user = await _authService.AuthApp(model);
             this.SetClientLang(user.PreferedLanguage);
-            if (!_dbContext.Users.Any(t => t.IsWebSiteOwner))
+            if (!await ThisSiteHasOwner())
             {
-                user.IsWebSiteOwner = true;
-                _dbContext.Users.Update(user);
-                await _dbContext.SaveChangesAsync();
+                // Add role
+                await _roleManager.CreateAsync(new IdentityRole
+                {
+                    Name = Consts.OwnerRoleName
+                });
+                await _userManager.AddToRoleAsync(user, Consts.OwnerRoleName);
             }
             return Redirect(model.state);
+        }
+
+        private async Task<bool> ThisSiteHasOwner()
+        {
+            var hasOwnerRole = await _roleManager.RoleExistsAsync(Consts.OwnerRoleName);
+            if (!hasOwnerRole)
+            {
+                return false;
+            }
+            var owners = await _userManager.GetUsersInRoleAsync(Consts.OwnerRoleName);
+            return owners.Any();
         }
     }
 }
