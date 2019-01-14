@@ -1,14 +1,18 @@
 # Blog
 
+[![Build status](https://aiursoft.visualstudio.com/Blog/_apis/build/status/Blog%20CI)](https://aiursoft.visualstudio.com/Blog/_build/latest?definitionId=-1)
+
 Anduin's blog
 
 ## Requirements
 
 Requirements about how to run
+
 * [Windows Server](http://www.microsoft.com/en-us/cloud-platform/windows-server) or [Ubuntu Server](https://www.ubuntu.com/server)
 * [dot net Core 2.1.0 or later](https://github.com/dotnet/core/tree/master/release-notes)
 
 Requirements about how to develope
+
 * [Windows 10](http://www.microsoft.com/en-US/windows/) or [Ubuntu desktop](https://www.ubuntu.com/desktop)
 * [dot net Core SDK 2.1.0 or later](https://github.com/dotnet/core/tree/master/release-notes)
 * [VS Code](https://code.visualstudio.com) (Strongly suggest)
@@ -27,7 +31,7 @@ When you have an app and get its `AppId` and `AppSecret`, copy those values to t
 
 ## How to run in Microsoft Visual Studio
 
-1. Open the `.sln` file in the project path. 
+1. Open the `.sln` file in the project path.
 2. Press `F5`.
 
 ## How to contribute
