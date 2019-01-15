@@ -13,7 +13,6 @@
     <link href="~/css/docs.css" rel="stylesheet">
     <link href="~/css/application.css" rel="stylesheet">
 </head>
-
 <body class="with-top-navbar">
     <div class="growl" id="app-growl"></div>
     <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-primary app-navbar">
@@ -60,7 +59,7 @@
                     </li>
                     <li class="nav-item ml-2">
                         <button class="btn btn-default navbar-btn navbar-btn-avatar" data-toggle="popover">
-                            @await UserImageGenerator.RenderUserImageAsync(User.Identity.Name, @class: "rounded-circle")
+                            @await UserImageGenerator.RenderUserImageAsync(User, @class: "rounded-circle")
                         </button>
                     </li>
                 </ul>
@@ -69,7 +68,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="@ServiceLocation.Account">Settings</a>
                     </li>
-                    @{ 
+                    @{
                         var user = await UserManager.GetUserAsync(User);
                     }
                     @if ((await UserManager.IsInRoleAsync(user, Consts.OwnerRoleName)))
@@ -86,7 +85,7 @@
         </div>
     </nav>
     @RenderBody()
-   
+
     <script src="/js/jquery.min.js"></script>
     <script src="/js/popper.min.js"></script>
     <script src="/js/chart.js"></script>
