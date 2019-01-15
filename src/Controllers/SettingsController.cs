@@ -12,7 +12,7 @@ namespace Aiursoft.Blog.Controllers
     {
         public IActionResult Index()
         {
-            return Json(new { message = "Passed" });
+            return View();
         }
     }
 }
