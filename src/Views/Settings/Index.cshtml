@@ -1,7 +1,7 @@
 ﻿
 <div class="container pt-4 pb-5">
     <div class="row">
-        <div class="col-lg-3">
+        <div class="col-lg-3 pt-3">
             <!--Profile card-->
             <div class="card card-profile mb-4 mt-5 d-none d-lg-block">
                 <div class="card-body">
@@ -25,6 +25,13 @@
                     <span class="icon icon-chevron-thin-right"></span>
                 </a>
             </div>
+
+            <!--Footer zone-->
+            <div class="card card-link-list">
+                <div class="card-body">
+                    © @DateTime.Now.Year @Values.ProjectName
+                </div>
+            </div>
         </div>
 
         <div class="col-lg-9">
@@ -33,20 +40,33 @@
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <a class="alert-link" href="profile/index.html">Visit your profile!</a> Check your self, you aren't looking well.
             </div>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/Apps">仪表板</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="/Bucket">存储池</a>
+                </li>
+                <li class="breadcrumb-item active">All Buckets</li>
+            </ol>
             <!--Details zone-->
             <div class="card mb-4">
                 <div class="card-body">
                     <h6 class="mb-3">Sponsored</h6>
                     <p><strong>It might be time to visit Iceland.</strong> Iceland is so chill, and everything looks cool here. Also, we heard the people are pretty nice. What are you waiting for?</p>
                     <button class="btn btn-outline-primary btn-sm">Buy a ticket</button>
+
+                    <p><strong>It might be time to visit Iceland.</strong> Iceland is so chill, and everything looks cool here. Also, we heard the people are pretty nice. What are you waiting for?</p>
+                    <button class="btn btn-outline-primary btn-sm">Buy a ticket</button>
+
+                    <p><strong>It might be time to visit Iceland.</strong> Iceland is so chill, and everything looks cool here. Also, we heard the people are pretty nice. What are you waiting for?</p>
+                    <button class="btn btn-outline-primary btn-sm">Buy a ticket</button>
+
+                    <p><strong>It might be time to visit Iceland.</strong> Iceland is so chill, and everything looks cool here. Also, we heard the people are pretty nice. What are you waiting for?</p>
+                    <button class="btn btn-outline-primary btn-sm">Buy a ticket</button>
                 </div>
             </div>
-            <!--Footer zone-->
-            <div class="card card-link-list">
-                <div class="card-body">
-                    © @DateTime.Now.Year @Values.ProjectName
-                </div>
-            </div>
+           
         </div>
     </div>
 </div>
