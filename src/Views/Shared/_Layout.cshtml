@@ -35,8 +35,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item @(Model.ActivePanel == 1 ? "active" : "")">
+                <li class="nav-item @(Model.ActivePanel == 1 ? " active" : "" )">
                     <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="nav-item @(Model.ActivePanel == 2 ? "active" : "")">
+                    <a class="nav-link" asp-controller="Tags" asp-action="Index">Tags</a>
                 </li>
             </ul>
             <form class="form-inline float-right d-none d-md-flex">
