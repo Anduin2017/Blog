@@ -1,12 +1,16 @@
-﻿<!DOCTYPE html>
+﻿@model Aiursoft.Blog.Models.SharedViewModels.LayoutViewModel
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     @this.UseDisableZoom()
-    @this.UseSEO()
     @this.UseDnsPrefetch()
-    <title>@ViewData["Title"] - Anduin Blog</title>
+    @if (!string.IsNullOrWhiteSpace(Model.Description))
+    {
+        <meta name="description" content="@Model.Description" />
+    }
+    <title>@Model.Title - Anduin Blog</title>
     @this.UseAiurFavicon()
     <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'> -->
     <link href="~/css/toolkit.css" rel="stylesheet">
@@ -31,7 +35,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item @(Model.ActivePanel == 1 ? "active" : "")">
                     <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
                 </li>
             </ul>

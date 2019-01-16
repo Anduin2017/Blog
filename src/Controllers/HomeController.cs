@@ -11,6 +11,7 @@ using Aiursoft.Pylon.Services;
 using Aiursoft.Pylon;
 using Aiursoft.Pylon.Models;
 using Aiursoft.Pylon.Attributes;
+using Aiursoft.Blog.Models.HomeViewModels;
 
 namespace Aiursoft.Blog.Controllers
 {
@@ -33,7 +34,8 @@ namespace Aiursoft.Blog.Controllers
         [AiurForceAuth("", "", true)]
         public IActionResult Index()
         {
-            return View();
+            var model = new IndexViewModel();
+            return View(model);
         }
 
         [HttpPost]

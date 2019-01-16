@@ -1,6 +1,14 @@
-﻿
+﻿@model Aiursoft.Blog.Models.SettingsViewModels.IndexViewModel
+
 <div class="container pt-4 pb-5">
     <div class="row">
+        <div class="col-lg-12">
+            <!--Alert zone-->
+            <div class="alert alert-success alert-dismissible d-none d-lg-block" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <a class="alert-link" href="profile/index.html">Visit your profile!</a> Check your self, you aren't looking well.
+            </div>
+        </div>
         <div class="col-lg-3 pt-3">
             <!--Profile card-->
             <div class="card card-profile mb-4 mt-5 d-none d-lg-block">
@@ -35,11 +43,7 @@
         </div>
 
         <div class="col-lg-9">
-            <!--Alert zone-->
-            <div class="alert alert-success alert-dismissible d-none d-lg-block" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <a class="alert-link" href="profile/index.html">Visit your profile!</a> Check your self, you aren't looking well.
-            </div>
+
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
                     <a href="/Apps">仪表板</a>

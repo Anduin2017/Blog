@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Aiursoft.Blog.Models.SettingsViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,8 @@ namespace Aiursoft.Blog.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            var model = new IndexViewModel();
+            return View(model);
         }
     }
 }
