@@ -12,5 +12,7 @@ namespace Aiursoft.Blog.Models.SettingsViewModels
         {
             ActivePanel = 0;
         }
+
+        public int SubActivePanel { get; set; }
     }
 }

@@ -11,6 +11,7 @@ namespace Aiursoft.Blog.Models.SettingsViewModels
         {
             Title = "Settings Home";
             Description = "The main settings page for blog.";
+            SubActivePanel = 1;
         }
     }
 }

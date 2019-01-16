@@ -16,5 +16,11 @@ namespace Aiursoft.Blog.Controllers
             var model = new IndexViewModel();
             return View(model);
         }
+
+        public IActionResult Profile()
+        {
+            var model = new ProfileViewModel();
+            return View(model);
+        }
     }
 }

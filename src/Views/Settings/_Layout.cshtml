@@ -26,12 +26,12 @@
             </div>
             <!--Nav bar-->
             <div class="list-group mb-4">
-                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between active">
-                    <span>Notifications</span>
+                <a asp-action="Index" class="list-group-item list-group-item-action d-flex justify-content-between @(Model.SubActivePanel == 1 ? "active" : "")">
+                    <span>Settings Home</span>
                     <span class="icon icon-chevron-thin-right"></span>
                 </a>
-                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between">
-                    <span>Mentions</span>
+                <a asp-action="Profile" class="list-group-item list-group-item-action d-flex justify-content-between @(Model.SubActivePanel == 2 ? "active" : "")">
+                    <span>Profile</span>
                     <span class="icon icon-chevron-thin-right"></span>
                 </a>
             </div>
@@ -48,12 +48,12 @@
 
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="/Apps">仪表板</a>
+                    <a asp-controller="Home" asp-action="Index">Blog</a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="/Bucket">存储池</a>
+                    <a asp-action="Index">Settings</a>
                 </li>
-                <li class="breadcrumb-item active">All Buckets</li>
+                <li class="breadcrumb-item active">@ViewContext.RouteData.Values["Action"]</li>
             </ol>
             @RenderBody()
 
