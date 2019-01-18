@@ -3,7 +3,7 @@
  <div class="card card-profile mb-4 mt-5 d-none d-lg-block">
     <div class="card-body">
         <a href="profile/index.html">
-            <img class="card-profile-img" src="/img/avatar-dhg.png">
+            @await UserImageGenerator.RenderUserImageAsync(User, 100, 100, "card-profile-img")
         </a>
         <h6 class="card-title">
             <a class="text-inherit" href="profile/index.html">@Model.NickName</a>
