@@ -13,17 +13,7 @@
         </div>
         <div class="col-lg-3 pt-3">
             <!--Profile card-->
-            <div class="card card-profile mb-4 mt-5 d-none d-lg-block">
-                <div class="card-body">
-                    <a href="profile/index.html">
-                        <img class="card-profile-img" src="/img/avatar-dhg.png">
-                    </a>
-                    <h6 class="card-title">
-                        <a class="text-inherit" href="profile/index.html">Dave Gamache</a>
-                    </h6>
-                    <p class="mb-4">I wish i was a little bit taller, wish i was a baller, wish i had a girl… also.</p>
-                </div>
-            </div>
+            <vc:profile-card></vc:profile-card>
             <!--Nav bar-->
             <div class="list-group mb-4">
                 <a asp-action="Index" class="list-group-item list-group-item-action d-flex justify-content-between @(Model.SubActivePanel == 1 ? "active" : "")">
