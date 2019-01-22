@@ -1,0 +1,31 @@
+﻿@model Aiursoft.Blog.Models.MeViewModels.MeViewModel
+@{
+    Layout = "../Shared/_Layout";
+}
+<div class="profile-header" style="background-image: url(/img/iceland.jpg);">
+    <div class="container">
+        <div class="container-inner">
+            <img class="rounded-circle media-object" src="/img/avatar-dhg.png">
+            <h3 class="profile-header-user">Dave Gamache</h3>
+            <p class="profile-header-bio">
+                I wish i was a little bit taller, wish i was a baller, wish i had a girl… also.
+            </p>
+        </div>
+    </div>
+
+    <nav class="profile-header-nav">
+        <ul class="nav nav-tabs justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link @(Model.ActivePanel == 1 ? "active" : "")" asp-controller="Me" asp-action="Index">Introduction</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @(Model.ActivePanel == 2 ? "active" : "")" asp-controller="Me" asp-action="Videos">Videos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @(Model.ActivePanel == 3 ? "active" : "")" asp-controller="Me" asp-action="Apps">Apps</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+@RenderBody()

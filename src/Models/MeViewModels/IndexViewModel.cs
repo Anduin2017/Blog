@@ -10,7 +10,8 @@ namespace Aiursoft.Blog.Models.MeViewModels
         public IndexViewModel()
         {
             Title = "Me";
-            Description = string.Empty;
+            Description = "About me home page.";
+            SubActivePanel = 1;
         }
     }
 }
