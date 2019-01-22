@@ -22,13 +22,12 @@ namespace Aiursoft.Blog.Views.Shared.Components.ProfileCard
             _userManager = userManager;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public IViewComponentResult Invoke(BlogUser owner)
         {
-            var user = await _userManager.GetUserAsync(UserClaimsPrincipal);
             var model = new ProfileCardViewModel
             {
-                NickName = user.NickName,
-                Bio = user.Bio
+                NickName = owner.NickName,
+                Bio = owner.Bio
             };
             return View(model);
         }

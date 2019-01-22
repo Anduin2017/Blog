@@ -13,7 +13,7 @@
         </div>
         <div class="col-lg-3 pt-3">
             <!--Profile card-->
-            <vc:profile-card></vc:profile-card>
+            <vc:profile-card owner="@Model.Owner"></vc:profile-card>
             <!--Nav bar-->
             <div class="list-group mb-4">
                 <a asp-action="Index" class="list-group-item list-group-item-action d-flex justify-content-between @(Model.SubActivePanel == 1 ? "active" : "")">

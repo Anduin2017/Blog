@@ -10,7 +10,7 @@
     {
         <meta name="description" content="@Model.Description" />
     }
-    <title>@Model.Title - Anduin Blog</title>
+    <title>@Model.Title - @(Model.Owner.NickName)'s Blog</title>
     @this.UseAiurFavicon()
     <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'> -->
     <link href="~/css/toolkit.css" rel="stylesheet">
@@ -21,8 +21,7 @@
     <div class="growl" id="app-growl"></div>
     <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-primary app-navbar">
         <a class="navbar-brand" asp-controller="Home" asp-action="Index">
-            Anduin Xue
-            @*<img src="~/img/brand-white.png" alt="brand">*@
+            @Model.Owner.NickName
         </a>
         <button class="navbar-toggler navbar-toggler-right d-md-none"
                 type="button"
@@ -77,7 +76,7 @@
                 <!--Drop Down-->
                 <ul class="nav navbar-nav d-none" id="js-popoverContent">
                     <li class="nav-item">
-                        <a class="nav-link" href="@ServiceLocation.Account">Settings</a>
+                        <a class="nav-link" href="@ServiceLocation.Account">Account Settings</a>
                     </li>
                     @{
                         var user = await UserManager.GetUserAsync(User);
