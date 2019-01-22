@@ -16,13 +16,13 @@
     <nav class="profile-header-nav">
         <ul class="nav nav-tabs justify-content-center">
             <li class="nav-item">
-                <a class="nav-link @(Model.ActivePanel == 1 ? "active" : "")" asp-controller="Me" asp-action="Index">Introduction</a>
+                <a class="nav-link @(Model.SubActivePanel == 1 ? "active" : "")" asp-controller="Me" asp-action="Index">Introduction</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link @(Model.ActivePanel == 2 ? "active" : "")" asp-controller="Me" asp-action="Videos">Videos</a>
+                <a class="nav-link @(Model.SubActivePanel == 2 ? "active" : "")" asp-controller="Me" asp-action="Videos">Videos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link @(Model.ActivePanel == 3 ? "active" : "")" asp-controller="Me" asp-action="Apps">Apps</a>
+                <a class="nav-link @(Model.SubActivePanel == 3 ? "active" : "")" asp-controller="Me" asp-action="Apps">Apps</a>
             </li>
         </ul>
     </nav>

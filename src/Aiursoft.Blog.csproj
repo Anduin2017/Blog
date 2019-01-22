@@ -8,4 +8,10 @@
     <PackageReference Include="Aiursoft.Pylon" Version="0.10.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Me\Apps.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
 </Project>

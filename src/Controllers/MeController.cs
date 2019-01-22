@@ -14,5 +14,17 @@ namespace Aiursoft.Blog.Controllers
             var model = new IndexViewModel();
             return View(model);
         }
+
+        public IActionResult Videos()
+        {
+            var model = new VideosViewModel();
+            return View(model);
+        }
+
+        public IActionResult Apps()
+        {
+            var model = new AppsViewModel();
+            return View(model);
+        }
     }
 }
