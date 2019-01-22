@@ -1,0 +1,10 @@
+﻿<div class="card card-link-list">
+    <div class="card-body">
+        © @DateTime.Now.Year @Values.ProjectName
+        @foreach (var foot in Values.Footer)
+        {
+            <a href="@foot.Value">@foot.Key</a>
+        }
+        <a href="@(new AiurUrl(ServiceLocation.API, "Api", "SetLang", new { Host = $"{Context.Request.Scheme}://{Context.Request.Host}", Path = Context.Request.Path }))">Language</a>
+    </div>
+</div>

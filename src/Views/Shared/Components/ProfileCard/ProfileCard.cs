@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 
 namespace Aiursoft.Blog.Views.Shared.Components.ProfileCard
 {
-
     public class ProfileCard : ViewComponent
     {
         private readonly BlogDbContext _dbContext;
