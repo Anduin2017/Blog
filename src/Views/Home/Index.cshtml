@@ -8,31 +8,34 @@
                 <div class="card-header" style="background-image: url(/img/iceland.jpg);"></div>
                 <div class="card-body text-center">
                     <a href="profile/index.html">
-                        <img class="card-profile-img"
-                             src="~/img/avatar-dhg.png">
+                        @await UserImageGenerator.RenderUserImageAsync(User, 94, 94, "card-profile-img")
                     </a>
 
                     <h6 class="card-title">
-                        <a class="text-inherit" href="profile/index.html">Dave Gamache</a>
+                        <a class="text-inherit" href="profile/index.html">@Model.Owner.NickName</a>
                     </h6>
 
-                    <p class="mb-4">I wish i was a little bit taller, wish i was a baller, wish i had a girl… also.</p>
+                    <p>
+                        CEO and founder of Aiursoft. I love C# and TypeScript and I'm focusing on Micro-services, DevOps, Web and PWA.
+                    </p>
 
                     <ul class="card-menu">
                         <li class="card-menu-item">
                             <a href="#userModal" class="text-inherit" data-toggle="modal">
-                                Friends
+                                Blogs
                                 <h6 class="my-0">12M</h6>
                             </a>
                         </li>
 
                         <li class="card-menu-item">
                             <a href="#userModal" class="text-inherit" data-toggle="modal">
-                                Enemies
+                                Videos
                                 <h6 class="my-0">1</h6>
                             </a>
                         </li>
                     </ul>
+
+
                 </div>
             </div>
 
