@@ -49,25 +49,25 @@ namespace Aiursoft.Blog.Controllers
         {
             var user = await _authService.AuthApp(model);
             this.SetClientLang(user.PreferedLanguage);
+            if (!await ThisSiteHasOwnerRole())
+            {
+                await _roleManager.CreateAsync(new IdentityRole { Name = Consts.OwnerRoleName });
+            }
             if (!await ThisSiteHasOwner())
             {
-                // Add role
-                await _roleManager.CreateAsync(new IdentityRole
-                {
-                    Name = Consts.OwnerRoleName
-                });
                 await _userManager.AddToRoleAsync(user, Consts.OwnerRoleName);
             }
             return Redirect(model.state);
         }
 
-        private async Task<bool> ThisSiteHasOwner()
+        private async Task<bool> ThisSiteHasOwnerRole()
         {
             var hasOwnerRole = await _roleManager.RoleExistsAsync(Consts.OwnerRoleName);
-            if (!hasOwnerRole)
-            {
-                return false;
-            }
+            return hasOwnerRole;
+        }
+
+        private async Task<bool> ThisSiteHasOwner()
+        {
             var owners = await _userManager.GetUsersInRoleAsync(Consts.OwnerRoleName);
             return owners.Any();
         }
