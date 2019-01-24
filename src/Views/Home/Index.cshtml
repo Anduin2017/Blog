@@ -8,7 +8,7 @@
                 <div class="card-header" style="background-image: url(/img/iceland.jpg);"></div>
                 <div class="card-body text-center">
                     <a href="profile/index.html">
-                        @await UserImageGenerator.RenderUserImageAsync(User, 94, 94, "card-profile-img")
+                        <img src="@ServiceLocation.OSS/download/fromkey/@(Model.Owner.HeadImgFileKey).png?w=49&h=94" style="width:94px; height:94px" class="card-profile-img" />
                     </a>
 
                     <h6 class="card-title">
