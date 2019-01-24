@@ -37,7 +37,7 @@ namespace Aiursoft.Blog.Controllers
                 {
                     new ManifestIcon
                     {
-                        Src = _serviceLocation.OSS + "/fromkey/" + owner.HeadImgFileKey + "?w=48&h=48",
+                        Src = _serviceLocation.OSS + "/download/fromkey/" + owner.HeadImgFileKey + ".png?w=48&h=48",
                         Sizes = "48x48",
                         Type = "image/png"
                     }
