@@ -18,6 +18,18 @@
     <link href="~/css/toolkit.css" rel="stylesheet">
     <link href="~/css/docs.css" rel="stylesheet">
     <link href="~/css/application.css" rel="stylesheet">
+    <style>
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        main {
+            width: 100%;
+            height: 100vh;
+            overflow: scroll;
+            margin-left: 0;
+        }
+    </style>
 </head>
 <body class="with-top-navbar">
     <div class="growl" id="app-growl"></div>
@@ -96,7 +108,9 @@
             }
         </div>
     </nav>
-    @RenderBody()
+    <main>
+        @RenderBody()
+    </main>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/popper.min.js"></script>
     <script src="/js/chart.js"></script>
