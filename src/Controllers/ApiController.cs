@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Aiursoft.Pylon.Attributes;
 using Microsoft.AspNetCore.Identity;
 using Aiursoft.Blog.Models;
+using Aiursoft.Pylon.Services;
 
 namespace Aiursoft.Blog.Controllers
 {
@@ -14,9 +15,13 @@ namespace Aiursoft.Blog.Controllers
     public class ApiController : Controller
     {
         private readonly UserManager<BlogUser> _userManager;
-        public ApiController(UserManager<BlogUser> userManager)
+        private readonly ServiceLocation _serviceLocation;
+        public ApiController(
+            UserManager<BlogUser> userManager,
+            ServiceLocation serviceLocation)
         {
             _userManager = userManager;
+            _serviceLocation = serviceLocation;
         }
         [Route("/manifest.json")]
         public async Task<IActionResult> Manifest()
@@ -32,7 +37,7 @@ namespace Aiursoft.Blog.Controllers
                 {
                     new ManifestIcon
                     {
-                        Src = "",
+                        Src = _serviceLocation.OSS + "/fromkey/" + owner.HeadImgFileKey + "?w=48&h=48",
                         Sizes = "48x48",
                         Type = "image/png"
                     }
