@@ -16,7 +16,8 @@ namespace Aiursoft.Blog.Controllers
         }
         public IActionResult ServerException()
         {
-            return View();
+            var model = new ServerExceptionViewModel();
+            return View(model);
         }
     }
 }
