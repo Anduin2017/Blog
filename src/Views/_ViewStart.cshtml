@@ -1,4 +1,8 @@
 ﻿@{
     Layout = "_Layout";
-    Model.Owner = (await UserManager.GetUsersInRoleAsync(Consts.OwnerRoleName)).First();
+    var owners = (await UserManager.GetUsersInRoleAsync(Consts.OwnerRoleName));
+    if(owners.Count > 0)
+    {
+        Model.Owner = owners.First();
+    }
 }
