@@ -57,7 +57,7 @@ namespace Aiursoft.Blog.Controllers
             {
                 await _userManager.AddToRoleAsync(user, Consts.OwnerRoleName);
             }
-            return Redirect(model.state);
+            return Redirect(model.State);
         }
 
         private async Task<bool> ThisSiteHasOwnerRole()

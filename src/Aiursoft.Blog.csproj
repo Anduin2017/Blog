@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Aiursoft.Pylon" Version="0.12.2" />
+    <PackageReference Include="Aiursoft.Pylon" Version="0.14.0" />
   </ItemGroup>
 
 </Project>
