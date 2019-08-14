@@ -37,31 +37,31 @@ namespace Aiursoft.Blog.Controllers
                 {
                     new ManifestIcon
                     {
-                        Src = _serviceLocation.OSS + "/download/fromkey/" + owner.HeadImgFileKey + ".png?w=48&h=48",
+                        Src = StorageService.GetProbeDownloadAddress(_serviceLocation, owner.IconFilePath) + "?w=48&h=48",
                         Sizes = "48x48",
                         Type = "image/png"
                     },
                     new ManifestIcon
                     {
-                        Src = _serviceLocation.OSS + "/download/fromkey/" + owner.HeadImgFileKey + ".png?w=72&h=72",
+                        Src = StorageService.GetProbeDownloadAddress(_serviceLocation, owner.IconFilePath) + ".png?w=72&h=72",
                         Sizes = "72x72",
                         Type = "image/png"
                     },
                     new ManifestIcon
                     {
-                        Src = _serviceLocation.OSS + "/download/fromkey/" + owner.HeadImgFileKey + ".png?w=144&h=144",
+                        Src = StorageService.GetProbeDownloadAddress(_serviceLocation, owner.IconFilePath) + ".png?w=144&h=144",
                         Sizes = "144x144",
                         Type = "image/png"
                     },
                     new ManifestIcon
                     {
-                        Src = _serviceLocation.OSS + "/download/fromkey/" + owner.HeadImgFileKey + ".png?w=240&h=240",
+                        Src = StorageService.GetProbeDownloadAddress(_serviceLocation, owner.IconFilePath) + ".png?w=240&h=240",
                         Sizes = "240x240",
                         Type = "image/png"
                     },
                     new ManifestIcon
                     {
-                        Src = _serviceLocation.OSS + "/download/fromkey/" + owner.HeadImgFileKey + ".png?w=512&h=512",
+                        Src = StorageService.GetProbeDownloadAddress(_serviceLocation, owner.IconFilePath) + ".png?w=512&h=512",
                         Sizes = "512x512",
                         Type = "image/png"
                     }
