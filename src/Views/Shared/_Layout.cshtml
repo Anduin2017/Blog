@@ -2,18 +2,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <vc:aiur-header></vc:aiur-header>
     <meta name="theme-color" content="#3097D1">
-    @this.UseDisableZoom()
-    @this.UseDnsPrefetch()
-    @if (!string.IsNullOrWhiteSpace(Model.Description))
-    {
-        <meta name="description" content="@Model.Description" />
-    }
     <title>@Model.Title - @(Model.Owner.NickName)'s Blog</title>
-    @this.UseAiurFavicon()
-    <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'> -->
     <link rel="manifest" href="/manifest.json" />
     <link href="~/css/toolkit.css" rel="stylesheet">
     <link href="~/css/application.css" rel="stylesheet">
@@ -101,7 +92,7 @@
     <script src="/js/chart.js"></script>
     <script src="/js/toolkit.js"></script>
     <script src="/js/application.js"></script>
-    @this.UseAiurLogoutter()
+    <vc:aiur-logout></vc:aiur-logout>
     @RenderSection("js", required: false)
     @Html.Raw(JavaScriptSnippet.FullScript)
 </body>
