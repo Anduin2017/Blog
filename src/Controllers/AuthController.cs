@@ -1,16 +1,12 @@
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Identity;
 using Aiursoft.Blog.Models;
-using Aiursoft.Blog.Data;
-using Aiursoft.Pylon.Services;
-using Aiursoft.Pylon.Attributes;
-using System;
-using Aiursoft.Pylon.Models;
-using Aiursoft.Pylon.Models.ForApps.AddressModels;
 using Aiursoft.Pylon;
-using Aiursoft.Pylon.Models.Developer;
+using Aiursoft.Pylon.Attributes;
+using Aiursoft.Pylon.Models.ForApps.AddressModels;
+using Aiursoft.Pylon.Services;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Aiursoft.Blog.Controllers
 {
@@ -18,19 +14,19 @@ namespace Aiursoft.Blog.Controllers
     {
         private readonly AuthService<BlogUser> _authService;
         private readonly UserManager<BlogUser> _userManager;
+        private readonly SignInManager<BlogUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly BlogDbContext _dbContext;
 
         public AuthController(
             AuthService<BlogUser> authService,
             UserManager<BlogUser> userManager,
-            RoleManager<IdentityRole> roleManager,
-            BlogDbContext dbContext)
+            SignInManager<BlogUser> signInManager,
+            RoleManager<IdentityRole> roleManager)
         {
             _authService = authService;
             _userManager = userManager;
+            _signInManager = signInManager;
             _roleManager = roleManager;
-            _dbContext = dbContext;
         }
 
         [AiurForceAuth(preferController: "", preferAction: "", justTry: false, register: false)]
@@ -56,6 +52,7 @@ namespace Aiursoft.Blog.Controllers
             if (!await ThisSiteHasOwner())
             {
                 await _userManager.AddToRoleAsync(user, Consts.OwnerRoleName);
+                await _signInManager.SignInAsync(user, true);
             }
             return Redirect(model.State);
         }

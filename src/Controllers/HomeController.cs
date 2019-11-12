@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Aiursoft.Blog.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Logging;
-using Aiursoft.Pylon.Services;
-using Aiursoft.Pylon;
-using Aiursoft.Pylon.Models;
-using Aiursoft.Pylon.Attributes;
+﻿using Aiursoft.Blog.Models;
 using Aiursoft.Blog.Models.HomeViewModels;
+using Aiursoft.Pylon;
+using Aiursoft.Pylon.Attributes;
+using Aiursoft.Pylon.Models;
+using Aiursoft.Pylon.Services;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace Aiursoft.Blog.Controllers
 {
@@ -43,7 +39,7 @@ namespace Aiursoft.Blog.Controllers
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation(4, "User logged out.");
-            return this.SignOutRootServer(_serviceLocation.API, new AiurUrl(string.Empty, "Home", nameof(HomeController.Index), new { }));
+            return this.SignOutRootServer(_serviceLocation.Gateway, new AiurUrl(string.Empty, "Home", nameof(Index), new { }));
         }
     }
 }

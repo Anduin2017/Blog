@@ -1,8 +1,13 @@
-﻿@{
-    Layout = "_Layout";
+﻿@model Aiursoft.Blog.Models.SharedViewModels.LayoutViewModel
+@{
     var owners = (await UserManager.GetUsersInRoleAsync(Consts.OwnerRoleName));
-    if(owners.Count > 0)
+    if (owners.Count > 0)
     {
+        Layout = "_Layout";
         Model.Owner = owners.First();
+    }
+    else
+    {
+        throw new InvalidOperationException("There is no admin of this site. Please sign in and go back to be the first admin.");
     }
 }

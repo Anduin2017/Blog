@@ -1,15 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using Aiursoft.Blog.Models;
+using Aiursoft.Pylon.Attributes;
+using Aiursoft.Pylon.Services;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Aiursoft.Pylon.Attributes;
-using Microsoft.AspNetCore.Identity;
-using Aiursoft.Blog.Models;
-using Aiursoft.Pylon.Services;
 
 namespace Aiursoft.Blog.Controllers
 {
+    [LimitPerMin]
     [APIExpHandler]
     [APIModelStateChecker]
     public class ApiController : Controller
@@ -23,6 +23,7 @@ namespace Aiursoft.Blog.Controllers
             _userManager = userManager;
             _serviceLocation = serviceLocation;
         }
+
         [Route("/manifest.json")]
         public async Task<IActionResult> Manifest()
         {
