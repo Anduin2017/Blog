@@ -1,6 +1,6 @@
 # Blog
 
-[![Build status](https://aiursoft.visualstudio.com/Blog/_apis/build/status/Blog%20CI)](https://aiursoft.visualstudio.com/Blog/_build/latest?definitionId=-1)
+[![Build status](https://dev.azure.com/aiursoft/Star/_apis/build/status/Blog%20CI)](https://dev.azure.com/aiursoft/Star/_build/latest?definitionId=10)
 
 Anduin's blog
 
