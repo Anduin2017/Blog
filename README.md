@@ -1,6 +1,6 @@
 # Blog
 
-[![Build status](https://dev.azure.com/aiursoft/Star/_apis/build/status/Blog%20CI)](https://dev.azure.com/aiursoft/Star/_build/latest?definitionId=10)
+[![Build status](https://dev.azure.com/aiursoft/Star/_apis/build/status/Blog%20Build)](https://dev.azure.com/aiursoft/Star/_build/latest?definitionId=10)
 
 Anduin's blog
 
