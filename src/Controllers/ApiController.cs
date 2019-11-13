@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Aiursoft.Blog.Controllers
@@ -29,10 +30,12 @@ namespace Aiursoft.Blog.Controllers
         {
             var owner = (await _userManager.GetUsersInRoleAsync(Consts.OwnerRoleName))
                 .First();
+            var descriptionAttribute = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyDescriptionAttribute>().Description;
             var model = new ManifestModel
             {
                 ShortName = owner.NickName,
                 Name = owner.NickName + "'s Blog",
+                Description = descriptionAttribute,
                 StartUrl = "/",
                 Icons = new List<ManifestIcon>()
                 {

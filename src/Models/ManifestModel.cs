@@ -1,8 +1,5 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Aiursoft.Blog.Models
 {
@@ -26,6 +23,7 @@ namespace Aiursoft.Blog.Models
 
         public string Display { get; set; }
         public string Orientation { get; set; }
+        public string Description { get; set; }
     }
 
     public class ManifestIcon
