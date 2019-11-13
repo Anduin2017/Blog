@@ -22,7 +22,7 @@ namespace Aiursoft.Blog
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<BlogDbContext>(options =>
-                options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(_configuration.GetConnectionString("DatabaseConnection")));
 
             services.AddIdentity<BlogUser, IdentityRole>()
                 .AddEntityFrameworkStores<BlogDbContext>()
