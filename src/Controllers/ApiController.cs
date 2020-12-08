@@ -1,6 +1,6 @@
 ﻿using Aiursoft.Blog.Models;
-using Aiursoft.Pylon.Attributes;
-using Aiursoft.Pylon.Services;
+using Aiursoft.Handler.Attributes;
+using Aiursoft.Probe.SDK.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -16,13 +16,13 @@ namespace Aiursoft.Blog.Controllers
     public class ApiController : Controller
     {
         private readonly UserManager<BlogUser> _userManager;
-        private readonly ServiceLocation _serviceLocation;
+        private readonly ProbeLocator _probeLocator;
         public ApiController(
             UserManager<BlogUser> userManager,
-            ServiceLocation serviceLocation)
+            ProbeLocator probeLocator)
         {
             _userManager = userManager;
-            _serviceLocation = serviceLocation;
+            _probeLocator = probeLocator;
         }
 
         [Route("/manifest.json")]
@@ -41,31 +41,31 @@ namespace Aiursoft.Blog.Controllers
                 {
                     new ManifestIcon
                     {
-                        Src = StorageService.GetProbeDownloadAddress(_serviceLocation, owner.IconFilePath) + "?w=48&h=48",
+                        Src = _probeLocator.GetProbeOpenAddress(owner.IconFilePath) + "?w=48&square=true",
                         Sizes = "48x48",
                         Type = "image/png"
                     },
                     new ManifestIcon
                     {
-                        Src = StorageService.GetProbeDownloadAddress(_serviceLocation, owner.IconFilePath) + ".png?w=72&h=72",
+                        Src = _probeLocator.GetProbeOpenAddress(owner.IconFilePath) + ".png?w=72&square=true",
                         Sizes = "72x72",
                         Type = "image/png"
                     },
                     new ManifestIcon
                     {
-                        Src = StorageService.GetProbeDownloadAddress(_serviceLocation, owner.IconFilePath) + ".png?w=144&h=144",
+                        Src = _probeLocator.GetProbeOpenAddress(owner.IconFilePath) + ".png?w=144&square=true",
                         Sizes = "144x144",
                         Type = "image/png"
                     },
                     new ManifestIcon
                     {
-                        Src = StorageService.GetProbeDownloadAddress(_serviceLocation, owner.IconFilePath) + ".png?w=240&h=240",
+                        Src = _probeLocator.GetProbeOpenAddress( owner.IconFilePath) + ".png?w=240&square=true",
                         Sizes = "240x240",
                         Type = "image/png"
                     },
                     new ManifestIcon
                     {
-                        Src = StorageService.GetProbeDownloadAddress(_serviceLocation, owner.IconFilePath) + ".png?w=512&h=512",
+                        Src = _probeLocator.GetProbeOpenAddress(owner.IconFilePath) + ".png?w=512&square=true",
                         Sizes = "512x512",
                         Type = "image/png"
                     }

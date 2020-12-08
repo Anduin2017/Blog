@@ -1,9 +1,9 @@
 ﻿using Aiursoft.Blog.Models;
 using Aiursoft.Blog.Models.HomeViewModels;
-using Aiursoft.Pylon;
-using Aiursoft.Pylon.Attributes;
-using Aiursoft.Pylon.Models;
-using Aiursoft.Pylon.Services;
+using Aiursoft.Identity;
+using Aiursoft.Identity.Attributes;
+using Aiursoft.SDK.Services;
+using Aiursoft.XelNaga.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

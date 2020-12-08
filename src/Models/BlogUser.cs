@@ -1,4 +1,4 @@
-using Aiursoft.Pylon.Models;
+using Aiursoft.Gateway.SDK.Models;
 
 namespace Aiursoft.Blog.Models
 {

@@ -1,8 +1,9 @@
 using Aiursoft.Blog.Models;
-using Aiursoft.Pylon;
-using Aiursoft.Pylon.Attributes;
-using Aiursoft.Pylon.Models.ForApps.AddressModels;
-using Aiursoft.Pylon.Services;
+using Aiursoft.Gateway.SDK.Models.ForApps.AddressModels;
+using Aiursoft.Handler.Attributes;
+using Aiursoft.Identity.Attributes;
+using Aiursoft.Identity.Services;
+using Aiursoft.WebTools;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Aiursoft.Blog.Controllers
 {
+    [LimitPerMin]
     public class AuthController : Controller
     {
         private readonly AuthService<BlogUser> _authService;
