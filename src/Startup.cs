@@ -1,4 +1,5 @@
-﻿using Aiursoft.Blog.Data;
+﻿using Aiursoft.Archon.SDK.Services;
+using Aiursoft.Blog.Data;
 using Aiursoft.Blog.Models;
 using Aiursoft.Identity;
 using Aiursoft.SDK;
@@ -9,7 +10,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Aiursoft.Identity;
 
 namespace Aiursoft.Blog
 {
@@ -19,6 +19,8 @@ namespace Aiursoft.Blog
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            AppsContainer.CurrentAppId = configuration["BlogAppId"];
+            AppsContainer.CurrentAppSecret = configuration["BlogAppSecret"];
         }
 
         public void ConfigureServices(IServiceCollection services)
